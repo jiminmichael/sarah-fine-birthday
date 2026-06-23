@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Sarah Fine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #ca9b8b; /* Soft, elegant rose-gold */
+            --bg-color: #f9f7f5; /* Soft cream */
+            --text-color: #4a4a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop'); /* Replace with Sarah's beautiful photo */
+            background-size: cover;
+            background-position: center;
+            filter: blur(4px) brightness(0.5);
+            z-index: -1;
+            transform: scale(1.1); /* Prevents blur edges from showing */
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: white;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            animation: fadeInDown 2s ease-out;
+        }
+
+        #hero .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            font-style: italic;
+            animation: fadeIn 3s ease-out;
+        }
+
+        .btn {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            animation: fadeInUp 3.5s ease-out;
+        }
+
+        .btn:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* General Section Styling */
+        .content-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 10%;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-container {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .text-side {
+            flex: 1;
+        }
+
+        .image-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-side img {
+            max-width: 100%;
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        h2 span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        /* Alternating Layouts */
+        .section-reverse .section-container {
+            flex-direction: row-reverse;
+        }
+
+        /* Final Section */
+        #final {
+            background-color: var(--primary-color);
+            color: #e0e0e0;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #final h2 {
+            color: white;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+        }
+
+        #final p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+            font-size: 1.1rem;
+        }
+
+        #final .signature {
+            margin-top: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .section-container, .section-reverse .section-container {
+                flex-direction: column-reverse;
+                gap: 30px;
+            }
+
+            .content-section {
+                padding: 6rem 1.5rem;
+            }
+
+            .image-side img {
+                width: 100%;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <h1>Happy Birthday, Sarah Fine.</h1>
+        <div class="subtitle">
+            Some people come into our lives and quietly become unforgettable.<br>
+            You did that without even trying.<br><br>
+            Today isn't just your birthday.<br>
+            It's a celebration of the beautiful soul that makes the world brighter simply by existing.
+        </div>
+        <a href="#section-1" class="btn">Begin the Story</a>
+    </section>
+
+    <!-- Section One -->
+    <section id="section-1" class="content-section">
+        <div class="section-container">
+            <div class="image-side">
+                <!-- Replace with Photo 1 -->
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1887&auto=format&fit=crop" alt="Sarah">
+            </div>
+            <div class="text-side">
+                <h2>Dear <span>Sarah</span></h2>
+                <p>There are countless words in every language, yet somehow none of them feel enough to describe you.</p>
+                <p>You are elegance wrapped in kindness.<br>Beauty wrapped in simplicity.<br>Strength wrapped in gentleness.</p>
+                <p>The more I know you, the more I realize that meeting you was never an ordinary moment. You became someone whose happiness genuinely matters to me.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Two -->
+    <section id="section-2" class="content-section section-reverse">
+        <div class="section-container">
+            <div class="image-side">
+                <!-- Replace with Photo 2 -->
+                <img src="https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?q=80&w=1887&auto=format&fit=crop" alt="Sarah smiling">
+            </div>
+            <div class="text-side">
+                <h2>Your <span>Smile</span></h2>
+                <p>Sarah Fine... I hope you never realize how powerful your smile is. Because if you did, you might stop smiling so freely.</p>
+                <p>Your smile has a way of making the world pause. It turns ordinary moments into memories. It brings peace without saying a single word.</p>
+                <p>Some people light up rooms. You light up hearts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Three -->
+    <section id="section-3" class="content-section">
+        <div class="section-container">
+            <div class="image-side">
+                <!-- Replace with Photo 3 -->
+                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=1964&auto=format&fit=crop" alt="Sarah's eyes">
+            </div>
+            <div class="text-side">
+                <h2>Your <span>Eyes</span></h2>
+                <p>There is something special about the way you look at people.</p>
+                <p>Your eyes carry warmth. Comfort. Kindness. Hope.</p>
+                <p>Sometimes I find myself forgetting everything around me because your eyes have a way of making the world disappear for a second. They're beautiful. Not because of their color... But because of the beautiful person behind them.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Four -->
+    <section id="section-4" class="content-section section-reverse">
+        <div class="section-container">
+            <div class="image-side">
+                <!-- Replace with Photo 4 -->
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1890&auto=format&fit=crop" alt="Sarah natural">
+            </div>
+            <div class="text-side">
+                <h2>Everything <span>About You</span></h2>
+                <p>It's the little things. The way you laugh. The way you smile without forcing it. The way your voice sounds when you're excited.</p>
+                <p>The kindness you show people. The respect you give everyone. The confidence you don't even realize you have.</p>
+                <p>You don't have to try to be amazing. You simply are.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Five -->
+    <section id="section-5" class="content-section">
+        <div class="section-container">
+            <div class="image-side">
+                <!-- Replace with Photo 5 -->
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1887&auto=format&fit=crop" alt="Sarah portrait">
+            </div>
+            <div class="text-side">
+                <h2>What You Mean <span>To Me</span></h2>
+                <p>Sarah Fine... There are people we admire. Then there are people who quietly become part of our hearts. You became that person for me.</p>
+                <p>Thank you for every smile you've shared. Every conversation we've had. Every memory we've created.</p>
+                <p>Whether you realize it or not, you've made my life brighter just by being yourself.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Six -->
+    <section id="section-6" class="content-section section-reverse">
+        <div class="section-container">
+            <div class="image-side">
+                <!-- Replace with Photo 6 -->
+                <img src="https://images.unsplash.com/photo-1496440737103-cd596325d314?q=80&w=1887&auto=format&fit=crop" alt="Sarah wishing">
+            </div>
+            <div class="text-side">
+                <h2>My Birthday Wish <span>For You</span></h2>
+                <p>I pray this new chapter of your life brings you joy that never fades. Peace that never leaves. Dreams that become reality.</p>
+                <p>Doors that open at the right time. People who genuinely appreciate your heart. A future brighter than anything you've imagined.</p>
+                <p>Because someone as wonderful as you deserves a life filled with beautiful moments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section id="final" class="content-section">
+        <div class="text-side" style="max-width: 800px; margin: 0 auto;">
+            <h2>One Last <span style="color: var(--accent-color);">Thing...</span></h2>
+            <p>Sarah Fine... This website isn't just about celebrating your birthday. It's about celebrating you.</p>
+            <p>The beautiful smile. The beautiful heart. The beautiful soul. The beautiful woman who unknowingly became one of the most important people in my life.</p>
+            <p>No matter where life takes us... I'll always be grateful that our paths crossed.</p>
+            <p><strong>Happy Birthday, Sarah Fine.</strong></p>
+            <p>May today remind you how deeply appreciated you are. And may this year become the beginning of your happiest chapter yet.</p>
+            <div class="signature">With all my admiration,<br>Jimin</div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Reveal Animation
+        const sections = document.querySelectorAll('.content-section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 }); // Trigger when 15% of the section is visible
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
